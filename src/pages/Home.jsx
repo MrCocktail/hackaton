@@ -9,12 +9,12 @@ export default function Home() {
   return (
     <Flowbite>
         <div className='w-screen'>
-            <Header />
+            {/* <Header /> */}
             <Hero />
             <div className="grid grid-cols-1 mx-aut w-screen">
                 <CardUtils />
             </div>
-            <FooterCustom />
+            {/* <FooterCustom /> */}
             {/* <DarkThemeToggle /> */}
         </div>
     </Flowbite>

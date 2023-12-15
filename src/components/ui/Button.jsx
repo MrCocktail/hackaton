@@ -1,9 +1,9 @@
 import { Button } from 'flowbite-react';
 
-export default function MyButton({content}) {
+export default function MyButton({content, isDisabled=false}) {
   return (
     <div>
-      <Button>{content}</Button>
+      <Button disabled={isDisabled}>{content}</Button>
     </div>
   );
 }

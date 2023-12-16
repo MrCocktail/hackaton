@@ -71,3 +71,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+/*  */
+div[data-testid="flowbite-card"] {
+  width: 40vw !important;
+  height: 70vh !important;
+}
+img[data-testid="flowbite-card-image"] {
+  height: 38vh !important;
+}

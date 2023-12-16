@@ -39,7 +39,7 @@ export default function IndividualCart() {
   <BiMinus />
 </button>
 <p className="font-normal text-gray-700 dark:text-gray-400 text-center w-20">{quantity}</p>
-<button onClick={() => setQuantity(quantity + 1)}>
+<button className="" onClick={() => setQuantity(quantity + 1)}>
   <AiOutlinePlus />
 </button>
 

@@ -3,8 +3,36 @@
 import { Card } from 'flowbite-react';
 import img from '../../assets/watch1.jpg';
 import '../../styles/index.css';
+import { addCart } from '../../services/cart.service';
+import { useState } from 'react';
 
 export default function CardUtils({product}) {
+  const [data, setData] = useState(product)
+  console.log(data);
+  const addToCart = async (item) => {
+    try {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === item.id);
+
+      if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += 1;
+      } else {
+        item.quantity = 1;
+        cart.push(item);
+      }
+      // cart.push(item)
+      localStorage.setItem('cart', JSON.stringify([...cart]));
+
+      console.log('Article ajouté au panier :', item);
+      // await addCart(item.id)
+      // .then(res => {
+      //   console.log("product added to cart", res);
+      // })
+      // .catch(err => console.log(err))
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <Card
       className="max-w-md"
@@ -64,6 +92,8 @@ export default function CardUtils({product}) {
       <div className="flex items-center justify-between">
         <span className="text-3xl font-bold text-gray-900 dark:text-white">${product.price}</span>
         <a
+          type="button"
+          onClick={() => addToCart(data)}
           href="#"
           className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
         >

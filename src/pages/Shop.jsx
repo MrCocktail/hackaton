@@ -18,6 +18,7 @@ export default function Shop() {
         setLabel(category.toUpperCase())
         getProductsByCategory(category).then(res => setProducts(res))
     }
+    // console.log(products);
   return (
     <div>
       <h1 className='text-3xl font-bold text-center'>Shop</h1>

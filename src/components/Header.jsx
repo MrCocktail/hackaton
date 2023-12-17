@@ -1,10 +1,25 @@
 import { BsFillHandbagFill } from "react-icons/bs"; 
 'use client';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar, Dropdown, Navbar, Badge } from 'flowbite-react';
 import { Link } from "react-router-dom";
+import { useUserContext } from "../services/userContext.service";
 
 export default function Header() {
+  const [connectedUser, setConnectedUser] = useState(null)
+  const [cart, setCart] = useState([])
+  const { user, logout } = useUserContext()
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log(storedCart);
+    setCart(storedCart)
+  }, [])
+  useEffect(() => {
+    setConnectedUser(user)
+    console.log('user: ', user);
+    console.log('connectedUser: ', connectedUser);
+  }, [])
+  console.log('in header', cart);
   return (
     <Navbar fluid rounded className='w-full'> 
       <Navbar.Brand href="https://flowbite-react.com">
@@ -17,7 +32,7 @@ export default function Header() {
                 <BsFillHandbagFill color="black" fontSize={24} />
             </Link>
                 <Badge color="success" className="mb-0">    
-                    0
+                    {cart.length}
                 </Badge>
         </div>
         <div>
@@ -25,17 +40,17 @@ export default function Header() {
               arrowIcon={false}
               inline
               label={
-                <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+                <Avatar alt="User settings" img={connectedUser.imageUrl} rounded />
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">Bonnie Green</span>
-                <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+                <span className="block text-sm">{connectedUser.prenom}</span>
+                {/* <span className="block truncate text-sm font-medium">name@flowbite.com</span> */}
               </Dropdown.Header>
-              <Dropdown.Item>Dashboard</Dropdown.Item>
+              {/* <Dropdown.Item>Dashboard</Dropdown.Item>
               <Dropdown.Item>Settings</Dropdown.Item>
               <Dropdown.Item>Earnings</Dropdown.Item>
-              <Dropdown.Divider />
+              <Dropdown.Divider /> */}
               <Dropdown.Item>Sign out</Dropdown.Item>
             </Dropdown>
         </div>

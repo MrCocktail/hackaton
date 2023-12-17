@@ -1,10 +1,10 @@
 // À l'extérieur du composant UserProvider
 import React, { createContext, useContext, useState } from 'react';
 
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
   const [cart, setCart] = useState([]);
 
   const login = (userData) => {
@@ -15,7 +15,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
   };
 
-  const addToCart = (item) => {
+  const addCart = (item) => {
     setCart([...cart, item]);
   };
 
@@ -34,9 +34,10 @@ export const UserProvider = ({ children }) => {
         cart,
         login,
         logout,
-        addToCart,
+        addCart,
         removeFromCart,
         clearCart,
+        helo: '`helo`',
       }}
     >
       {children}
@@ -53,3 +54,7 @@ export const useUserContext = () => {
 
   return context;
 };
+
+// export const GlobalContext = createContext()
+
+

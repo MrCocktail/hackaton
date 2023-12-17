@@ -6,9 +6,12 @@ import CardUtils from '../components/ui/CardUtils'
 import FooterCustom from '../components/FooterCustom'
 import { getLimitedProducts } from '../services/eCommerceService'
 import Connection from '../components/ConnectionModal'
+import { useUserContext } from '../services/userContext.service'
 
 export default function Home() {
   const [products, setProducts] = React.useState([])
+  const { user } = useUserContext() 
+  console.log(user);
   useEffect(() => {
     getLimitedProducts(6).then(res => setProducts(res))
   }, [])
@@ -23,7 +26,7 @@ export default function Home() {
                 </div>  
               ))}
             </div>
-            <Connection />	
+            {(user === null || user === "undefined") && <Connection />	}
             {/* <DarkThemeToggle /> */}
         </div>
     </Flowbite>

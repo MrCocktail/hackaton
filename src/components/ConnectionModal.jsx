@@ -9,15 +9,15 @@ import { getUser } from "../services/user.service";
 
 export default function Connection() {
   const [openModal, setOpenModal] = useState(true);
-  const {login} = useUserContext()
-  console.log('jj');
+  const {login, helo} = useUserContext()
+  console.log(helo);
   useEffect(() => {
     const getUserById = async (userId) => {
       try {
         const response = await getUser(userId);
         const user = response.data;
-        console.log(user);
         login(user);
+        console.log(user);
       } catch (error) {
         console.error('Erreur lors de la récupération de l\'utilisateur :', error);
         console.log('Une erreur s\'est produite lors de la récupération de l\'utilisateur :', error);

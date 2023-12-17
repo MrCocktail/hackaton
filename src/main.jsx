@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './styles/index.css'
 import dotenv from 'dotenv';
-import { UserProvider } from './services/userContext.service.jsx';
+import { UserProvider, UserContext } from './services/userContext.service.jsx';
 // dotenv.config();
 
 

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import IndividualCart from '../components/ui/HorizontalCardUtils'
 import { getProducts } from '../services/eCommerceService'
+import { useUserContext } from '../services/userContext.service'
 
 export default function ShoppingCart() {
   const [products, setProducts] = useState([]) 
   const [userCart, setUserCart] = useState([])
   const [total, setTotal] = useState(0)
+  const { cart } = useUserContext()
+  console.log(cart);
   useEffect(() => {
     	const cart = JSON.parse(localStorage.getItem('cart')) || []
     	setUserCart(cart)

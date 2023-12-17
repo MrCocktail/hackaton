@@ -5,10 +5,12 @@ import img from '../../assets/watch1.jpg';
 import '../../styles/index.css';
 import { addCart } from '../../services/cart.service';
 import { useState } from 'react';
+import { useUserContext } from '../../services/userContext.service';
 
 export default function CardUtils({product}) {
   const [data, setData] = useState(product)
-  console.log(data);
+  const { addCart } = useUserContext()
+  // console.log(data);
   const addToCart = async (item) => {
     try {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -20,6 +22,7 @@ export default function CardUtils({product}) {
         item.quantity = 1;
         cart.push(item);
       }
+      addCart(cart)
       // cart.push(item)
       localStorage.setItem('cart', JSON.stringify([...cart]));
 

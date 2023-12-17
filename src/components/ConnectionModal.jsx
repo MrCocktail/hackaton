@@ -32,7 +32,7 @@ export default function Connection() {
 
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Toggle modal</Button>
+      {/* <Button onClick={() => setOpenModal(true)}>Toggle modal</Button> */}
       <Modal show={openModal} position={"top-right"} onClose={() => setOpenModal(false)}>
         <Modal.Header>Google Authentication</Modal.Header>
         <Modal.Body>

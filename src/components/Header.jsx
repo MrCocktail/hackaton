@@ -25,6 +25,21 @@ export default function Header() {
     // console.log('user: ', user);
     // console.log('connectedUser: ', connectedUser);
   }, [])
+  function supprimerLocalStorageItem(nomDeLaCle) {
+    try {
+      localStorage.removeItem(nomDeLaCle);
+      console.log(`La clé "${nomDeLaCle}" a été supprimée du localStorage.`);
+    } catch (erreur) {
+      console.error(`Erreur lors de la suppression de la clé "${nomDeLaCle}" du localStorage :`, erreur);
+    }
+    window.location.reload();
+  }
+  
+  // Exemple d'utilisation :
+  // Supprimer la clé 'user' du localStorage
+  // supprimerLocalStorageItem('user');
+  
+
   console.log('in header', cart);
   return (
     <Navbar fluid rounded className='w-full'> 
@@ -37,9 +52,9 @@ export default function Header() {
             <Link to="/cart">
                 <BsFillHandbagFill color="black" fontSize={24} />
             </Link>
-                <Badge color="success" className="mb-0">    
+                {/* <Badge color="success" className="mb-0">    
                     {cart.length}
-                </Badge>
+                </Badge> */}
         </div>
         <div>
             <Dropdown
@@ -49,17 +64,17 @@ export default function Header() {
                 <Avatar alt="User settings" img={user && user.imageUrl} rounded />
               }
             >
-              <Dropdown.Header>
+              {/* <Dropdown.Header>
                 <span className="block text-sm">{user && user.prenom}</span>
-                {/* <span className="block truncate text-sm font-medium">name@flowbite.com</span> */}
+                <span className="block truncate text-sm font-medium">name@flowbite.com</span>
               </Dropdown.Header>
               <Dropdown.Item>
                 <DarkThemeToggle />
               </Dropdown.Item>
-              {/* <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item> */}
+              <Dropdown.Item>Settings</Dropdown.Item>
+              <Dropdown.Item>Earnings</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>Sign out</Dropdown.Item>
+              <Dropdown.Item onClick={() => supprimerLocalStorageItem("user")} >Sign out</Dropdown.Item> */}
             </Dropdown>
         </div>
         <Navbar.Toggle />

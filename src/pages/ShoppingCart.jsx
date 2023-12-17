@@ -24,11 +24,21 @@ export default function ShoppingCart() {
       .catch((err) => console.log(err));
   };
   
+  
   const [products, setProducts] = useState([]) 
   const [userCart, setUserCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
   const [total, setTotal] = useState(0)
   const { cart } = useUserContext()
   console.log(cart);
+  const removeFromCart = (produitId) => {
+    // Filtrer les produits pour obtenir un nouveau tableau sans le produit à retirer
+    const nouveauPanier = userCart.filter((produit) => produit.id !== produitId);
+
+    // Mettre à jour l'état avec le nouveau panier
+    setProducts(nouveauPanier);
+    localStorage.setItem('cart', JSON.stringify(nouveauPanier))
+    window.location.reload()
+  };
   useEffect(() => {
     	const cart = JSON.parse(localStorage.getItem('cart')) || []
     	setUserCart(cart)
@@ -64,7 +74,7 @@ export default function ShoppingCart() {
       <div className="flex flex-wrap gap-8 p-8">
             {(userCart.length > 0) ? userCart.map(product => (
                 <div className="w-92 h-100 mb-20">
-                    <IndividualCart key={product.id} product={product} />
+                    <IndividualCart key={product.id} product={product} removeFromCart={removeFromCart}/>
                 </div>
             ))
           :

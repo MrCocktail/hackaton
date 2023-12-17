@@ -81,3 +81,15 @@ div[data-testid="flowbite-card"] {
 img[data-testid="flowbite-card-image"] {
   height: 45vh !important;
 }
+
+@media (max-width: 767px) {
+  div[data-testid="flowbite-card"] {
+    width: 90vw !important;
+    height: auto !important; /* Ajuster la hauteur en fonction du contenu */
+  }
+
+  img[data-testid="flowbite-card-image"] {
+    height: auto !important; /* Ajuster la hauteur en fonction du contenu */
+    max-width: 100% !important; /* Assurer que l'image ne dépasse pas la largeur du conteneur */
+  }
+}

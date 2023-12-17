@@ -1,3 +1,4 @@
+import { AiFillDelete } from "react-icons/ai"; 
 import { AiOutlinePlus } from "react-icons/ai"; 
 import { BiMinus } from "react-icons/bi"; 
 
@@ -9,7 +10,7 @@ import MyButton from "./Button";
 import { useEffect, useState } from "react";
 import { json } from "react-router-dom";
 
-export default function IndividualCart({product}) {
+export default function IndividualCart({product, removeFromCart}) {
     const [item, setItem] = useState(product); 
     const [cart, setCart] = useState([])
     useEffect(() => {
@@ -30,7 +31,7 @@ export default function IndividualCart({product}) {
         // console.log(JSON.parse(localStorage.getItem('cart')));
     }
     // console.log(cart);
-    const updateQuantity = (itemId, newQuantity) => {
+    const updateQuantity = (itemId, newQuantity, removeFromCart) => {
       console.log(itemId, newQuantity);
       setCart((prevCart) => {
         const updatedCart = prevCart.map((item) => {
@@ -145,6 +146,9 @@ export default function IndividualCart({product}) {
 <p className="font-normal text-gray-700 dark:text-gray-400 text-center w-20">{item.quantity}</p>
 <button className="" onClick={() => incrementQuantity(item.quantity + 1)}>
   <AiOutlinePlus />
+</button>
+<button className="" onClick={() => removeFromCart(item.id)}>
+  <AiFillDelete color="red" fontSize={20} />
 </button>
 
       </div>

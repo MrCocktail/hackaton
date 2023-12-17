@@ -8,15 +8,22 @@ import FooterCustom from '../components/FooterCustom'
 import { getLimitedProducts } from '../services/eCommerceService'
 import Connection from '../components/ConnectionModal'
 import { useUserContext } from '../services/userContext.service'
+import Cookies from 'js-cookie'
 
 export default function Home() {
   const [products, setProducts] = React.useState([])
   const { user } = useUserContext() 
-  localStorage.setItem('user', JSON.stringify(user))
+  // localStorage.setItem('user', JSON.stringify(user))
   console.log(user);
   useEffect(() => {
     getLimitedProducts(5).then(res => setProducts(res))
   }, [])
+
+  const valeurDuCookie = Cookies.get('userData');
+  const cookieExiste = Cookies.get('userData') !== undefined;
+  const all = Cookies.get()
+  console.log(all);
+  console.log(valeurDuCookie);
   return (
     <Flowbite>
         <div className='w-screen :dark:bg-gray-900'>
@@ -36,7 +43,7 @@ export default function Home() {
           View more <BsArrowRight className="inline" />
         </a>
             </div>
-            {typeof user === 'undefined' && <Connection />	}
+            {!localStorage.getItem('user') && <Connection />	}
             
             {/* <DarkThemeToggle /> */}
         </div>

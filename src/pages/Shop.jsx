@@ -22,8 +22,8 @@ export default function Shop() {
   return (
     <div>
       <h1 className='text-3xl font-bold text-center'>Shop</h1>
-        <Dropdown label={`Filter products by ${label}`} inline>
-            <Dropdown.Item>BEST RATED</Dropdown.Item>
+        <Dropdown label={`${label}`} inline>
+            {/* <Dropdown.Item>BEST RATED</Dropdown.Item> */}
             {categories.map(category => (
                 <Dropdown.Item onClick={() => filterProducts(category)}>{category.toUpperCase()}</Dropdown.Item>
             ))}

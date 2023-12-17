@@ -76,8 +76,8 @@ button:focus-visible {
 /*  */
 div[data-testid="flowbite-card"] {
   width: 40vw !important;
-  height: 70vh !important;
+  height: 80vh !important;
 }
 img[data-testid="flowbite-card-image"] {
-  height: 38vh !important;
+  height: 45vh !important;
 }

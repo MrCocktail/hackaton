@@ -4,8 +4,9 @@ import { getProducts } from '../services/eCommerceService'
 import { useUserContext } from '../services/userContext.service'
 
 export default function ShoppingCart() {
+  // const [quantity, setQuantity] = useState()
   const [products, setProducts] = useState([]) 
-  const [userCart, setUserCart] = useState([])
+  const [userCart, setUserCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
   const [total, setTotal] = useState(0)
   const { cart } = useUserContext()
   console.log(cart);
@@ -15,11 +16,13 @@ export default function ShoppingCart() {
   }, [])
   useEffect(() => {
     let amount = 0
+    console.log(userCart);
     userCart.map(item => {
       amount += item.price * item.quantity
     })
+    console.log(amount);
     setTotal(amount)
-  }, [userCart])
+  }, [])
   useEffect(() => {
       getProducts().then(res => setProducts(res))
   }, [])

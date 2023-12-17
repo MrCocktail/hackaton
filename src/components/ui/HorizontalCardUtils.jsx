@@ -22,6 +22,7 @@ export default function IndividualCart({product}) {
         const newItem = { ...prevItem, quantity: amount };
         localStorage.setItem('cart', JSON.stringify([newItem, ...cart]));
         console.log(JSON.parse(localStorage.getItem('cart')));
+        // setQuantity(amount)
         return newItem;
       });
         // setItem({...item, quantity: amount});
@@ -50,11 +51,12 @@ export default function IndividualCart({product}) {
         // setItem({...item, quantity: amount});
         item.quantity > 1 && setItem({...item, quantity: amount});
         localStorage.setItem('cart', JSON.stringify(item));
+        // setQuantity(amount)
 
     }
   return (
     <Card
-    horizontal
+    // horizontal
     className="max-w-md"
     imgAlt={product.title}
     imgSrc={product.image} 
@@ -65,7 +67,7 @@ export default function IndividualCart({product}) {
       </h5>
     </a>
     <p className="font-normal text-gray-700 dark:text-gray-400">
-        {product.description}
+        {product.description.slice(0, 100)}
       </p>
     {/* <div className="mb-5 mt-2.5 flex items-center">
       <svg

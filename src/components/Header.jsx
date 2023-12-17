@@ -4,12 +4,15 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Avatar, Dropdown, Navbar, Badge } from 'flowbite-react';
 import { Link } from "react-router-dom";
 import { UserContext, useUserContext } from "../services/userContext.service";
+import { DarkThemeToggle, Flowbite } from 'flowbite-react'
+
 
 export default function Header() {
   const [cart, setCart] = useState([])
+  // const user = JSON.parse(localStorage.getItem('user')) || []
   const { user,  logout } = useUserContext()
   const global = useUserContext()
-  console.log(user);
+  // console.log(user);
   const [connectedUser, setConnectedUser] = useState(user)
   console.log(connectedUser);
   useEffect(() => {
@@ -25,9 +28,9 @@ export default function Header() {
   console.log('in header', cart);
   return (
     <Navbar fluid rounded className='w-full'> 
-      <Navbar.Brand href="https://flowbite-react.com">
+      <Navbar.Brand href="/">
         {/* <img src="/favicon.svg" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" /> */}
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Hackaton</span>
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">DevFundGoal</span>
       </Navbar.Brand>
       <div className="flex justify-center items-center md:order-2">
         <div className="flex">
@@ -50,10 +53,12 @@ export default function Header() {
                 <span className="block text-sm">{user && user.prenom}</span>
                 {/* <span className="block truncate text-sm font-medium">name@flowbite.com</span> */}
               </Dropdown.Header>
-              {/* <Dropdown.Item>Dashboard</Dropdown.Item>
-              <Dropdown.Item>Settings</Dropdown.Item>
-              <Dropdown.Item>Earnings</Dropdown.Item>
-              <Dropdown.Divider /> */}
+              <Dropdown.Item>
+                <DarkThemeToggle />
+              </Dropdown.Item>
+              {/* <Dropdown.Item>Settings</Dropdown.Item>
+              <Dropdown.Item>Earnings</Dropdown.Item> */}
+              <Dropdown.Divider />
               <Dropdown.Item>Sign out</Dropdown.Item>
             </Dropdown>
         </div>

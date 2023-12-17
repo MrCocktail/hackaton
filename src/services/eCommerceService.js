@@ -12,6 +12,21 @@ export async function getProducts(){
         console.error(err)
     }
 }
+export async function topProducts() {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/products`);
+    const products = response.data;
+
+    // Filtrer les produits avec un rating > 4.5
+    const topRatedProducts = products.filter(product => product.rating.rate >= 4.7);
+
+    return topRatedProducts;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des produits :', error);
+    throw error; // Vous pouvez choisir de gérer l'erreur ici ou la propager à l'appelant
+  }
+}
+
 export async function getLimitedProducts(amount){
     try{
         const products = await axios.get(`${API_BASE_URL}/products?limit=${amount}`)
